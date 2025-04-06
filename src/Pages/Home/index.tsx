@@ -4,6 +4,7 @@ import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../../services/firebaseConnection";
 import imgHome from "../../../public/images/imgHome.png";
+import { Footer } from "../../components/Footer";
 
 interface LinkProps {
   id: string;
@@ -63,16 +64,16 @@ export function Home() {
         <div className="h-40 w-40">
           <img src={imgHome} />
         </div>
-        <h1 className="font-bold text-white md:text-2xl text-2xl mt-2">
+        <h1 className="font-bold text-white md:text-2xl text-2xl mt-4">
           Victor Schmidt
         </h1>
-        <span>
+        <span className="mt-4">
           Sempre aprendendo, sempre codando — bem-vindo ao meu universo dev.
         </span>
       </div>
 
       {social && Object.keys(social).length > 0 && (
-        <div className="flex mt-4 gap-4">
+        <div className="flex mt-5 gap-4">
           <SocialMedia url={social?.linkedin}>
             <FaLinkedin size={28} color="#FEFEFE" />
           </SocialMedia>
@@ -84,21 +85,22 @@ export function Home() {
           </SocialMedia>
         </div>
       )}
-      <span className="mt-5 text-indigo-100">Veja meus links</span>
+      <span className="mt-5 text-indigo-100">Alguns de meus projetos: </span>
       <main className="mt-4 flex flex-col w-11/12 justify-center max-w-xl items-center text-center">
         {links?.map((link) => (
           <section
             key={link.id}
-            className="mt-4 w-full py-2 px-4 rounded-md select-none transition-transform cursor-pointer hover:scale-105 bg-gradient-to-r from-[#FD6F00]  to-[#CA5900]"
+            className="mt-4 w-full py-2 px-4 rounded-md select-none transition-transform cursor-pointer bg-gradient-to-r from-[#FD6F00]  to-[#CA5900]"
           >
             <a href={link.url} target="_blank">
-              <p className="font-bold md:text-lg" style={{ color: link.color }}>
+              <p className="font-bold md:text-lg text-white">
                 {link.name}
               </p>
             </a>
           </section>
         ))}
       </main>
+      <Footer/>
     </div>
   );
 }
